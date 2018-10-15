@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+$dark-blue: #0080FF;
+$light-blue: #73C2FB;
+$blue-when-hover: #80b8dd;
+
+$button-border: 2px solid $dark-blue;
+
+%buttons-basics {
+    position: absolute;
+    height: 38px;
+    top: 24%;
+
+    background: none;
+
+    border:none;
+    border-bottom: $button-border;
+    border-top: $button-border;
+    cursor: pointer;
+    transition: 0.25s linear;
+}
+
+%endButton-pseudoclasses {
+    border-top: $button-border;
+    box-shadow: inset 0 50px 0 0 $dark-blue;
+    border:none;
+    color: #fff;
+    cursor: pointer;
+
+    outline: none;
+}
+
+
+*{
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-weight: bold;
+    color: #fff;
+}
+
+.main-block {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+
+    width: 500px;
+
+    padding: 5px;
+    padding-top: 0;
+
+    border: 3px solid $dark-blue;
+    border-top: none;
+    box-shadow: 1px 1px 5px rgb(192, 192, 192);
+
+    text-align: center;
+}
+
+.main-block__header {
+    position: relative;
+    left: -8px;
+
+    width: 505px;
+
+    background: $dark-blue;
+    font-size: 26px;
+    text-shadow: 1px 1px 0 black;
+
+    margin-bottom: 10px;
+    padding: 5px;
+
+    overflow: hidden;
+
+    &:before {
+        content: '';
+        position: absolute;
+        
+        width: 15px;
+        height: 150%;
+    
+        left: 10px;
+        top: -20px;
+    
+        transform: rotate(45deg);
+        background: $light-blue;
+    }
+}
+
+/*СТИЛИ ДЛЯ БОКСА С ДОБАВЛЕНИЕМ/ПОИСКОМ ЭЛЕМЕНТА*/
+.add-element-block {
+    position: relative;
+    &__input {
+        width: 65%;
+        padding: 5px;
+        color: #000;
+        &:enabled {
+            outline: none;
+        }
+    }
+}
+
+.add-element-block__button {
+    position: absolute;
+
+    width: 60px;
+    height: 40px;
+    margin-left: 10px;
+
+    background: $light-blue;
+    background-size: 100%;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, .3);  
+    border: none;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    &:hover {
+        cursor: pointer;
+        z-index: 0;
+    }
+    &:enabled {
+        outline: none;
+    }
+
+    &:before {
+        content: '';
+        top: 0;
+        left: -15px;
+        
+        position: absolute;
+        width: 10%;
+        height: 52%;
+    
+        transform: skew(-40deg);
+    
+        transition: 0.30s;
+        background: $dark-blue;
+    
+        box-sizing: border-box; 
+    }
+    &:hover:before{
+        left: 3px;
+        z-index: -1;
+    }
+}
+
+
+/* СТИЛИ ДЛЯ СПИСКА*/
+
+.list {
+    margin-top: 10px;   
+}
+
+.element-block {
+    position: relative;
+
+    padding:  10px 5px;
+    margin: 5px 0;
+    
+    height: 60px;
+    overflow: auto;
+    line-height: 35px;
+    background: rgb(156, 214, 255);
+    border: $button-border;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, .3);
+    
+    &__text {
+        display: inline-block;
+    
+        position: absolute;
+        top: 0;
+        left: 0;
+    
+        width: 220px;
+        height: 100%;
+    
+        line-height: 70px;
+    
+        padding: 3px; 
+        margin: 0 10px;
+    
+        box-sizing: border-box;
+    }
+
+    &__time {
+        display: inline-block;
+        position: absolute; 
+    
+        width: 80px;
+    
+        top: 24%;
+        right: 150px;
+        margin: 0 5px;
+        padding: 0 3px;
+    
+        border: $button-border;
+    }
+}
+
+/* добавляется на событии listElement dragOver */
+#overDND {
+    background: $blue-when-hover;
+}
+
+
+.element-block__button {
+    @extend %buttons-basics;
+    right: 80px;
+    &:enabled {
+        outline: none;
+    }
+
+    &.Stop {
+        background: rgba(216, 20, 69, 0.8);
+        border-top: $button-border; 
+        border-bottom: $button-border; 
+    }
+}
+
+.element-block__button-end {
+    @extend %buttons-basics;
+    text-shadow: none;
+    color: #000;
+    right: 10px;
+
+    &:hover {
+        @extend %endButton-pseudoclasses;
+    }
+    &:focus {
+        @extend %endButton-pseudoclasses;
+    }
+}
+
+
