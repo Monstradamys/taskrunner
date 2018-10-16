@@ -1,5 +1,5 @@
 # Список дел. 
-### Демонстрация https://monstradamys.github.io/taskrunner/
+## <a href="https://monstradamys.github.io/taskrunner/">Демонстрация</a>
 Простой список дел с возможностями добавлять, отмечать начало и завершение дел. 
 Список дел сохраняется в localstorage. 
 Для удобства пользования реализовано управление посредством Drag'n'Drop.
