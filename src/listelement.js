@@ -4,7 +4,7 @@ import React from "react";
 export default class Element extends React.Component {
     constructor(props) {
         super(props);
-        let timeFromLS = JSON.parse(localStorage.listOfDeeds)[this.props.id].timeSpend.split(":");
+        let timeFromLS = this.props.element.timeSpend.split(":");
         this.state = {
             hours : timeFromLS[0],
             min: timeFromLS[1],
@@ -71,8 +71,8 @@ export default class Element extends React.Component {
 
     handleDragStart = (e) => {
         this.dragEnterCounter = 0;
-        e.dataTransfer.setData("Text/html", e.target.firstChild.innerText);
-        this.props.getTransferringData(e.target.firstChild.innerText);
+        e.dataTransfer.setData("Text/html", this.props.element.name);
+        this.props.getTransferringData(this.props.element.name);
         
     }
 
@@ -81,8 +81,8 @@ export default class Element extends React.Component {
         let target = document.getElementById("overDND");
         if(target != null) {
             let data = e.dataTransfer.getData("text/html");
-            if(target.firstChild.innerText !== data) {
-                this.props.shuffleElements(data, target.firstChild.innerText);
+            if(this.props.element.name !== data) {
+                this.props.shuffleElements(data, this.props.element.name);
                 target.id = "";
             }
         }
@@ -95,7 +95,7 @@ export default class Element extends React.Component {
         if(target.className !== "element-block") {
             target = target.parentNode
         }
-        if(target.className === "element-block" && target.firstChild.innerText !== this.props.transferringData && this.dragEnterCounter > 0) {
+        if(target.className === "element-block" && this.props.element.name !== this.props.transferringData && this.dragEnterCounter > 0) {
             let oldTarget = document.getElementById("overDND");
             if(oldTarget !== null) oldTarget.id = "";
             target.id = "overDND";
