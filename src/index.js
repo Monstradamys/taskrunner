@@ -6,4 +6,4 @@ import "./styles/style.scss";
 
 ReactDOM.render(<App/>, document.getElementById("root"));
 
-module.hot.accept();
+if(module.hot !== undefined) module.hot.accept();
